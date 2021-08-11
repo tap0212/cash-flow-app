@@ -8,23 +8,26 @@ import produce from 'immer';
 import { createActions } from 'reduxsauce';
 
 export const { Types: HomeTypes, Creators: HomeCreators } = createActions({
-    sample: ['payload'],
+  sample: ['payload'],
 });
 export type homeStateType = {
-    smaple: string;
+  smaple: string;
 };
 export const initialState: homeStateType = {
-    smaple: '',
+  smaple: '',
 };
 
-export const homeContainerReducer = (state: homeStateType = initialState, action: PayloadAction): homeStateType =>
-    produce(state, (draft) => {
-        switch (action.type) {
-            case HomeTypes.SAMPLE:
-                draft.smaple = 'hello';
-                state;
-                break;
-        }
-    });
+export const homeContainerReducer = (
+  state: homeStateType = initialState,
+  action: PayloadAction,
+): homeStateType =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case HomeTypes.SAMPLE:
+        draft.smaple = 'hello';
+        state;
+        break;
+    }
+  });
 
 export default homeContainerReducer;

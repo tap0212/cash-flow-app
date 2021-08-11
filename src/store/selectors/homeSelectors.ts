@@ -5,8 +5,8 @@ const selectHomeDomain = (state: ApplicationState) => state.home || initialState
 
 const makeSelectHome = (): unknown => createSelector(selectHomeDomain, (substate) => substate);
 export const selectSample = (): OutputSelector<
-    ApplicationState,
-    string,
-    (res: homeStateType) => string
+  ApplicationState,
+  string,
+  (res: homeStateType) => string
 > => createSelector(selectHomeDomain, (substate) => substate.smaple);
 export { makeSelectHome };

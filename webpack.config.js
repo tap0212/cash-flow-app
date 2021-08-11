@@ -8,6 +8,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 // We will create it later.
 const htmlPlugin = new HtmlWebPackPlugin({
     template: './src/index.html',
+    favicon: './src/favicon.ico',
 });
 
 module.exports = {
@@ -26,6 +27,63 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                // Preprocess 3rd party .css files located in node_modules
+                test: /\.css$/,
+                include: /node_modules/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(eot|otf|ttf|woff|woff2)$/,
+                use: 'file-loader',
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-url-loader',
+                        options: {
+                            // Inline files smaller than 10 kB
+                            limit: 10 * 1024,
+                            noquotes: true,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            // Inline files smaller than 10 kB
+                            limit: 10 * 1024,
+                        },
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                enabled: false,
+                                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+                                // Try enabling it in your environment by switching the config to:
+                                // enabled: true,
+                                // progressive: true,
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            optipng: {
+                                optimizationLevel: 7,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.9],
+                                speed: 4,
+                            },
+                        },
+                    },
+                ],
             },
         ],
     },

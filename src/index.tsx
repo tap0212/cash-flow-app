@@ -13,15 +13,15 @@ import { Provider } from 'react-redux';
 import configureStore from './configureStore';
 import history from './utils/history';
 import { ApplicationInitialState } from './reducers';
-
+import 'antd/dist/antd.css';
 const store = configureStore(history, ApplicationInitialState);
 ReactDOM.render(
-    <ErrorBoundary>
-        <Provider store={store}>
-            <Router>
-                <App />
-            </Router>
-        </Provider>
-    </ErrorBoundary>,
-    document.getElementById('root'),
+  <ErrorBoundary>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </ErrorBoundary>,
+  document.getElementById('root'),
 );
