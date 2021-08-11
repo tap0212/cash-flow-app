@@ -1,5 +1,5 @@
 # Cash Flow Assistant
-![](https://github.com/tap0212/react-typescript-template/blob/main/demo.gif)
+![](https://github.com/tap0212/cash-flow-app/blob/main/demo.gif)
 ### Key features
  - Takes in two inputs: `Total Bill Amount` and `Total Cash received`
  - Tells the user to return the change to the customer with minimum number of notes
